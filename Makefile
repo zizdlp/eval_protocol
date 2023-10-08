@@ -1,4 +1,4 @@
-LOOP ?= 10
+LOOP ?= 1000
 LENGTH ?= 25000
 RANDOM_PORT := $(shell shuf -i 50001-50099 -n 1)
 PORT ?= $(RANDOM_PORT)
