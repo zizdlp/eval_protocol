@@ -15,7 +15,7 @@ bash env.sh # or run `make env`
 ##  依赖安装
 
 ```shell
-./bazel-5.4.0-installer-linux-x86_64.sh # install bazel
+./bazel-5.4.0-installer-linux-x86_64.sh # install binary bazel 
 apt-get update
 apt-get install openssl
 apt-get install libssl-dev
