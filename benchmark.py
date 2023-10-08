@@ -3,6 +3,7 @@ import time
 import argparse
 
 def benchmark(server, client, length=None, loop=None,port=None):
+    time.sleep(3)
     # 启动 sync_server 进程
     server_args = [server]
     if port is not None:
@@ -36,12 +37,15 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     server_lists=[
+        "./bazel-bin/profile/socket/server",
         "./bazel-bin/profile/workflow/sync_server",
-        "./bazel-bin/profile/workflow/async_server"
+        "./bazel-bin/profile/workflow/async_server",
+        
     ]
     client_lists=[
+        "./bazel-bin/profile/socket/client",
         "./bazel-bin/profile/workflow/sync_client",
-        "./bazel-bin/profile/workflow/async_client"
+        "./bazel-bin/profile/workflow/async_client",
     ]
     for i in range(len(server_lists)):
         server = server_lists[i]
