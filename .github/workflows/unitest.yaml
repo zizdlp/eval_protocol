@@ -25,3 +25,6 @@ jobs:
     - name: Run bazel build
       run:
         make build
+    - name: Run benchmark
+    run:
+      make benchmark
