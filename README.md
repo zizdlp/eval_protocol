@@ -32,6 +32,13 @@ openssl version
 - 评估httplib post
 - 评估workflow post
 
+## 如何评估
+
+```shell
+make build
+make benchmark
+```
+
 ## proxy
 ```shell
 export https_proxy="http://127.0.0.1:1080"
