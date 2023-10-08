@@ -19,6 +19,10 @@ ABSL_FLAG(uint16_t, loop, 1, "client call loop times");
 ABSL_FLAG(uint32_t, length, 25000, "send data bytes each time");
 
 static int counter = 0;
+static WFFacilities::WaitGroup* wait_group;
+void sig_handler(int signo){
+	wait_group->done();
+}
 void callback(WFHttpTask *httpTask){
 	int state = httpTask->get_state();
 	int error = httpTask->get_error();
@@ -37,8 +41,8 @@ void callback(WFHttpTask *httpTask){
 		return;
 	}
 	counter+=1;
+	wait_group->done();
 }
-
 int main(int argc, char *argv[]){
 	absl::ParseCommandLine(argc, argv);
 
@@ -49,11 +53,17 @@ int main(int argc, char *argv[]){
 
 	std::string server_address = absl::StrFormat("%s:%d",target, port);
     std::string send_data(length, 'a');
+
+	WFFacilities::WaitGroup wait_group_instance(loop);
+    wait_group = &wait_group_instance;
+
+
+
 	// std::cout<<"=== workflow sync server is:"<<server_address<<" ==="<<std::endl;
 	auto s = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch())
 			.count();
 	for(int i =0;i<loop;++i){
-		auto httpTask = WFTaskFactory::create_http_task(server_address, 0, 0, callback);
+		auto httpTask = WFTaskFactory::create_http_task(server_address, 0, 0,callback);
 		protocol::HttpRequest *req = httpTask->get_req();
 
 		req->set_method("POST");
@@ -62,12 +72,10 @@ int main(int argc, char *argv[]){
 		req->add_header_pair("User-Agent", "TestAgent");
 		req->add_header_pair("Connection", "close");
 		httpTask->start();
-		while(counter<=i){
-			std::this_thread::sleep_for(std::chrono::microseconds(1));
-		}
 	}
+	wait_group->wait();
 	auto e = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch())
 				.count();
-	std::cout << "=== workflow sync;"<<"port:"<<port<<";loop:"<<loop<<";length:"<<length<<";time:" << e - s << "us ===" << std::endl;
+	std::cout << "=== workflow async;"<<"port:"<<port<<";loop:"<<loop<<";length:"<<length<<";time:" << e - s << "us ===" << std::endl;
 	return 0;
 }

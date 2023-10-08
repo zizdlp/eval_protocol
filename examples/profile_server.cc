@@ -20,7 +20,7 @@ void process(WFHttpTask *server_task)
 {
 	call_count+=1;
 	if(call_count%100==0){
-		std::cout<<"call_count is:"<<call_count<<std::endl;
+		// std::cout<<"call_count is:"<<call_count<<std::endl;
 	}
 	protocol::HttpRequest *req = server_task->get_req();
 	protocol::HttpResponse *resp = server_task->get_resp();

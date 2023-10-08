@@ -10,7 +10,7 @@ def benchmark(server, client, length=None, loop=None,port=None):
     server_process = subprocess.Popen(server_args)
 
     # 等待一段时间确保 sync_server 完全启动
-    time.sleep(5)
+    time.sleep(3)
 
     # 启动 sync_client 进程
     # 准备参数列表
@@ -35,7 +35,15 @@ if __name__ == "__main__":
     parser.add_argument("--port", type=int, help="port parameter")
 
     args = parser.parse_args()
-
-    server = "./bazel-bin/profile/workflow/sync_server"
-    client = "./bazel-bin/profile/workflow/sync_client"
-    benchmark(server, client, args.length, args.loop,args.port)
+    server_lists=[
+        "./bazel-bin/profile/workflow/sync_server",
+        "./bazel-bin/profile/workflow/async_server"
+    ]
+    client_lists=[
+        "./bazel-bin/profile/workflow/sync_client",
+        "./bazel-bin/profile/workflow/async_client"
+    ]
+    for i in range(len(server_lists)):
+        server = server_lists[i]
+        client = client_lists[i]
+        benchmark(server, client, args.length, args.loop,args.port)
