@@ -12,6 +12,26 @@ Evaluation of communication protocol performance
 bash env.sh # or run `make env`
 ```
 
+##  依赖安装
+
+```shell
+apt-get update
+apt-get install build-essential
+apt-get install cmake
+apt-get install openssl
+apt-get install libssl-dev
+openssl version
+```
+
+## workflow install
+
+```shell
+cd workflow
+make
+cd tutorial
+make
+./helloworld
+```
 
 ## proxy
 ```shell
