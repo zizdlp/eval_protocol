@@ -45,6 +45,18 @@ export https_proxy="http://127.0.0.1:1080"
 export http_proxy="http://127.0.0.1:1080"
 ```
 
+## eval
+
+测试环境macbook pro docker
+
+```shell
+=== socket;        port:50011;loop:1000;length:25000;time:127976us ===
+=== workflow sync; port:50011;loop:1000;length:25000;time:581556us ===
+=== workflow async;port:50011;loop:1000;length:25000;time:75762us ===
+=== grpc sync;     port:50011;loop:1000;length:25000;time:722472us ===
+=== grpc async;    port:50011;loop:1000;length:25000;time:169693us ===
+```
+
 ## bazel install
 
 ```shell
