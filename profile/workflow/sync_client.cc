@@ -6,6 +6,7 @@
 #include <workflow/WFFacilities.h>
 #include <iostream>
 #include <chrono>
+#include <thread>
 #include <atomic>
 
 #include "absl/flags/flag.h"
