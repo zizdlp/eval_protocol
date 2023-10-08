@@ -26,5 +26,5 @@ jobs:
       run:
         make build
     - name: Run benchmark
-    run:
-      make benchmark
+      run:
+        make benchmark
