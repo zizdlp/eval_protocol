@@ -3,7 +3,6 @@ import time
 import argparse
 
 def benchmark(server, client, length=None, loop=None,port=None):
-    time.sleep(3)
     # 启动 sync_server 进程
     server_args = [server]
     if port is not None:
