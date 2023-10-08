@@ -9,6 +9,10 @@ build:
 	bazel build //profile/workflow:async_client
 	bazel build //profile/socket:server
 	bazel build //profile/socket:client
+	bazel build //profile/grpc:async_server
+	bazel build //profile/grpc:async_client
+	bazel build //profile/grpc:sync_server
+	bazel build //profile/grpc:sync_client
 benchmark:
 	python benchmark.py --loop=$(LOOP) --length=$(LENGTH) --port=$(PORT)
 .PHONY: workflow_sync_server workflow_sync_client benchmark
