@@ -15,23 +15,22 @@ bash env.sh # or run `make env`
 ##  依赖安装
 
 ```shell
+./bazel-5.4.0-installer-linux-x86_64.sh # install bazel
 apt-get update
-apt-get install build-essential
-apt-get install cmake
 apt-get install openssl
 apt-get install libssl-dev
 openssl version
 ```
 
-## workflow install
+## 评估内容
 
-```shell
-cd workflow
-make
-cd tutorial
-make
-./helloworld
-```
+数据传输场景，多次的发送一定规模的数据（25000字节），评估其耗时。
+
+- 评估grpc 同步传输(unary)
+- 评估grpc 异步传输(unary)
+- 评估socket 单连接
+- 评估httplib post
+- 评估workflow post
 
 ## proxy
 ```shell
