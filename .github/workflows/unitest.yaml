@@ -16,9 +16,11 @@ jobs:
         wget  https://github.com/bazelbuild/bazel/releases/download/6.1.1/bazel-6.1.1-installer-linux-x86_64.sh
         sudo bash bazel-6.1.1-installer-linux-x86_64.sh
         which bazel
-        apt-get update
-        apt-get install openssl
-        apt-get install libssl-dev
+    - name: Install deps
+      run: |
+        sudo apt-get update
+        sudo apt-get install openssl
+        sudo apt-get install libssl-dev
         openssl version
     - name: Run bazel build
       run:
