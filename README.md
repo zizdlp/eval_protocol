@@ -15,7 +15,7 @@ bash env.sh # or run `make env`
 ##  依赖安装
 
 ```shell
-./bazel-5.4.0-installer-linux-x86_64.sh # install binary bazel 
+# you need to install bazel, see below how to install it
 apt-get update
 apt-get install openssl
 apt-get install libssl-dev
@@ -45,7 +45,7 @@ export https_proxy="http://127.0.0.1:1080"
 export http_proxy="http://127.0.0.1:1080"
 ```
 
-## bazel
+## bazel install
 
 ```shell
 wget  https://github.com/bazelbuild/bazel/releases/download/6.1.1/bazel-6.1.1-installer-linux-x86_64.sh

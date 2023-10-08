@@ -1,4 +1,4 @@
-LOOP ?= 100
+LOOP ?= 1
 LENGTH ?= 25000
 
 build:
